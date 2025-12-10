@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro con Pure.css</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" 
+          integrity="sha384-U89J3yA8j1y3v9v9l5V0c3h5w9v8x7v5d7e8f5d7e8f" crossorigin="anonymous">
+
+    <style>
+        /* Variables y Estilos Base */
+        :root {
+            --pure-accent: #1e3a8a; /* Azul Profundo */
+            --pure-light: #f4f7f6;
+            --pure-dark: #333333;
+            --pure-button-hover: #173279;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--pure-light);
+            color: var(--pure-dark);
+            padding: 30px;
+        }
+
+        /* Contenedor Principal (usamos la clase estándar de Pure para el centro) */
+        .contenedor {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta de Registro */
+        .tarjeta-registro {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 35px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            margin-bottom: 40px;
+        }
+
+        /* Títulos */
+        .titulo-registro {
+            margin-bottom: 30px;
+            color: var(--pure-accent); 
+            font-weight: 600;
+            font-size: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .titulo-lista {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--pure-dark);
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        /* Personalización de Formulario Pure.css */
+        .pure-form input[type='text']:focus {
+            border-color: var(--pure-accent);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2); 
+        }
+
+        .pure-form input[type='text'] {
+            padding: 10px 14px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .pure-form label {
+            font-weight: 500;
+            color: #555555;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* Personalización del Botón Principal (Guardar/Actualizar) */
+        .pure-button-primary.w-100 {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--pure-accent); 
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .pure-button-primary.w-100:hover {
+            background-color: var(--pure-button-hover);
+        }
+
+        /* Estilos de Tabla */
+        .tabla-contenedor {
+            overflow-x: auto;
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            background-color: white;
+        }
+
+        .pure-table th, .pure-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .pure-table thead {
+            background-color: #f0f0f0; 
+            color: var(--pure-dark);
+        }
+        
+        /* Estilo Hover de las Filas */
+        .pure-table tbody tr:hover {
+            background-color: #f7f7f7;
+        }
+
+        /* Estilos de botones de Opciones */
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin-right: 6px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn-warning {
+            background-color: #f9a825; /* Amarillo mostaza elegante */
+            color: #333333;
+        }
+
+        .btn-danger {
+            background-color: #c53030; /* Rojo oscuro y sobrio */
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="tarjeta-registro">
+            <h1 class="titulo-registro">Registro de Usuarios</h1>
+
+            <form class="pure-form pure-g" onsubmit="event.preventDefault();">
+                <div class="pure-u-1 pure-u-md-1-3" style="padding: 0 10px;">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" placeholder="Escribe el nombre">
+                </div>
+                
+                <div class="pure-u-1 pure-u-md-1-3" style="padding: 0 10px;">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" placeholder="Escribe el apellido">
+                </div>
+                
+                <div class="pure-u-1 pure-u-md-1-3" style="padding: 0 10px;">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" placeholder="Escribe el teléfono">
+                </div>
+            </form>
+
+            <div style="margin-top: 30px;">
+                <button id="btnGuardar" class="pure-button pure-button-primary w-100">Guardar Registro</button>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="titulo-lista">Lista de Registros</h2>
+            <div class="tabla-contenedor">
+                <table class="pure-table pure-table-horizontal">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT SIN CAMBIOS EN LA LÓGICA ---
+        let imputNombre = document.getElementById("nombre");
+        let imputApellido = document.getElementById("apellido");
+        let imputTelefono = document.getElementById("telefono");
+        let registro = [];
+        let idEditando = null;
+
+        document.getElementById("btnGuardar").addEventListener("click", () => {
+            if (imputNombre.value.trim() == "") {
+                alert("Se requiere el nombre");
+            } else if (imputApellido.value.trim() == "") {
+                alert("Se requiere el apellido");
+            } else if (imputTelefono.value.trim() == "") {
+                alert("Se requiere el telefono");
+            } else {
+                if (idEditando === null) {
+                    let data = {
+                        id: Date.now(),
+                        nombre: imputNombre.value.trim(),
+                        apellido: imputApellido.value.trim(),
+                        telefono: imputTelefono.value.trim()
+                    }
+                    registro.push(data);
+                } else {
+                    let itemEditado = registro.find(item => item.id === idEditando);
+                    itemEditado.nombre = imputNombre.value.trim();
+                    itemEditado.apellido = imputApellido.value.trim();
+                    itemEditado.telefono = imputTelefono.value.trim();
+                    idEditando = null;
+                }
+                console.log(registro);
+                pintar();
+                limpiar();
+            }
+        });
+
+        function limpiar() {
+            imputNombre.value = "";
+            imputApellido.value = "";
+            imputTelefono.value = "";
+            idEditando = null;
+            document.getElementById("btnGuardar").textContent = "Guardar Registro"; 
+        }
+
+        function pintar() {
+            document.getElementById("datos").textContent = "";
+            registro.forEach((item, indice) => {
+                let tr = document.createElement("tr");
+                let tdId = document.createElement("td");
+                let tdNombre = document.createElement("td");
+                let tdApellido = document.createElement("td");
+                let tdTelefono = document.createElement("td");
+                let tdOpciones = document.createElement("td");
+                tdId.textContent = item.id;
+                tdNombre.textContent = item.nombre;
+                tdApellido.textContent = item.apellido;
+                tdTelefono.textContent = item.telefono;
+
+                // Botón Editar
+                let btnEditar = document.createElement("button");
+                btnEditar.textContent = "📝 Editar";
+                btnEditar.classList.add("btn-sm", "btn-warning"); 
+                btnEditar.addEventListener("click", () => {
+                    imputNombre.value = item.nombre;
+                    imputApellido.value = item.apellido;
+                    imputTelefono.value = item.telefono;
+                    idEditando = item.id;
+                    document.getElementById("btnGuardar").textContent = "Actualizar Registro";
+                });
+
+                let btnEliminar = document.createElement("button");
+                btnEliminar.textContent = "❌ Eliminar";
+                btnEliminar.classList.add("btn-sm", "btn-danger");
+                btnEliminar.addEventListener("click", () => {
+                    if (confirm(`¿Estás seguro de eliminar el registro de ${item.nombre} ${item.apellido}?`)) {
+                        registro.splice(indice, 1);
+                        pintar();
+                        limpiar();
+                    }
+                });
+
+                tdOpciones.appendChild(btnEditar);
+                tdOpciones.appendChild(btnEliminar);
+                tr.appendChild(tdId);
+                tr.appendChild(tdNombre);
+                tr.appendChild(tdApellido);
+                tr.appendChild(tdTelefono);
+                tr.appendChild(tdOpciones);
+                document.getElementById("datos").appendChild(tr);
+            });
+        }
+    </script>
+</body>
+
+</html>
